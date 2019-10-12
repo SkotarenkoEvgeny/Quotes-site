@@ -7,6 +7,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('about/', views.about, name='about'),
-    path('blog/', views.blog, name='blog'),
+    path('autors/', views.about, name='autors'),
+    path('topic/', views.blog, name='topic'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

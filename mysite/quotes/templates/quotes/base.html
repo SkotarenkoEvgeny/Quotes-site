@@ -32,11 +32,9 @@
 <header id="header">
     <div id="head" class="parallax" parallax-speed="2">
         <h1 id="logo" class="text-center">
-            <img class="img-circle" src="{% static 'quotes/images/guy.jpg' %}"
+            <img class="img-circle" src="{% static 'quotes/images/start image.jpg' %}"
                  alt="">
-            <span class="title">Anthony Russel</span>
-            <span class="tagline">A mystery person<br>
-				<a href="">anthony.russel42@example.com</a></span>
+            <span class="title">Famous Quotes and Sayings</span>
         </h1>
     </div>
 
@@ -56,7 +54,7 @@
 
                 <ul class="nav navbar-nav">
                     <li class="active"><a href='{% url "index" %}'>Home</a></li>
-                    <li><a href='{% url "about" %}'>About</a></li>
+                    <li><a href='{% url "autors" %}'>Autors</a></li>
 
                     <!-- most correct it -->
 
@@ -73,7 +71,7 @@
                             <li><a href="single.html">Blog Post</a></li>
                         </ul>
                     </li>
-                    <li><a href='{% url "blog" %}'>Blog</a></li>
+                    <li><a href='{% url "topic" %}'>topic</a></li>
                 </ul>
 
             </div><!--/.nav-collapse -->
@@ -113,31 +111,6 @@
                 </div>
             </div>
 
-            <div class="col-md-3 widget">
-                <h3 class="widget-title">Text widget</h3>
-                <div class="widget-body">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Atque, nihil natus explicabo ipsum quia iste aliquid
-                        repellat eveniet velit ipsa sunt libero sed aperiam id
-                        soluta officia asperiores adipisci maxime!</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Atque, nihil natus explicabo ipsum quia iste aliquid
-                        repellat eveniet velit ipsa sunt libero sed aperiam id
-                        soluta officia asperiores adipisci maxime!</p>
-                </div>
-            </div>
-
-            <div class="col-md-3 widget">
-                <h3 class="widget-title">Form widget</h3>
-                <div class="widget-body">
-                    <p>+234 23 9873237<br>
-                        <a href="mailto:#">some.email@somewhere.com</a><br>
-                        <br>
-                        234 Hidden Pond Road, Ashland City, TN 37015
-                    </p>
-                </div>
-            </div>
-
         </div> <!-- /row of widgets -->
     </div>
 </footer>
@@ -155,7 +128,7 @@
             <div class="col-md-6 widget">
                 <div class="widget-body">
                     <p class="text-right">
-                        Copyright &copy; 2014, Your awesome name here<br>
+                        Copyright &copy; 2019, Your awesome name here<br>
                         Design: <a href="http://www.gettemplate.com"
                                    rel="designer">Initio by GetTemplate</a></p>
                 </div>
@@ -169,6 +142,6 @@
 <!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-<script src="assets/js/template.js"></script>
+<script src="{% static 'assets/js/template.js' %}></script>
 </body>
 </html>

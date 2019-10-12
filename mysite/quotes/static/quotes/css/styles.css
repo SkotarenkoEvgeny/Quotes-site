@@ -379,7 +379,7 @@ img {
   padding: 0;
 }
 .thumbnails li {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 .thumbnails .details {
   display: block;
@@ -753,6 +753,7 @@ footer.entry-meta .meta-in {
   padding: 30px 0 0 0;
   font-size: 12px;
   color: #999;
+
 }
 #footer a {
   color: #ccc;
@@ -791,8 +792,8 @@ footer.entry-meta .meta-in {
 }
 /* Max page width
 /////////////////////////////////////////////////////////////////////*/
-@media (min-width: 1200px) {
+@media (min-width: 900px) {
   .container {
-    max-width: 1080px;
+    max-width: 880px;
   }
 }
