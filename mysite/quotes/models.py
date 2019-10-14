@@ -35,7 +35,7 @@ class Author(models.Model):
     foto = models.ImageField(
         verbose_name='Foto',
         blank=True,
-        upload_to='media/authors'
+        upload_to='authors'
     )
 
     def __str__(self):
@@ -50,7 +50,7 @@ class Topic(models.Model):
 
     foto = models.ImageField(
         verbose_name='Foto',
-        upload_to='media/topics'
+        upload_to='topics'
     )
 
     def __str__(self):
