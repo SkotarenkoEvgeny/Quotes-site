@@ -7,7 +7,16 @@ body {
   font-family: "Open sans", Helvetica, Arial, sans-serif;
   color: #666666;
   padding: 0;
+
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
 }
+
+.Site-content {
+  flex: 1;
+}
+
 .topspace {
   margin-top: 40px;
 }
