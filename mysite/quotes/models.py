@@ -35,6 +35,7 @@ class Author(models.Model):
     foto = models.ImageField(
         verbose_name='Foto',
         blank=True,
+        upload_to='media/authors'
     )
 
     def __str__(self):
@@ -46,6 +47,11 @@ class Topic(models.Model):
         max_length=50,
         blank=False,
         verbose_name='Topic')
+
+    foto = models.ImageField(
+        verbose_name='Foto',
+        upload_to='media/topics'
+    )
 
     def __str__(self):
         return self.topic
