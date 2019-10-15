@@ -12,7 +12,8 @@ class Author(models.Model):
     last_name = models.CharField(
         max_length=25,
         blank=False,
-        verbose_name='Last name')
+        verbose_name='Last name',
+        unique=True)
 
     born_date = models.DateField(
         verbose_name='Born date')
@@ -46,7 +47,8 @@ class Topic(models.Model):
     topic = models.CharField(
         max_length=50,
         blank=False,
-        verbose_name='Topic')
+        verbose_name='Topic',
+        unique=True)
 
     foto = models.ImageField(
         verbose_name='Foto',
@@ -61,7 +63,8 @@ class Quote(models.Model):
     quote = models.CharField(
         max_length=500,
         blank=False,
-        verbose_name='Quote')
+        verbose_name='Quote',
+        unique=True)
 
     author = models.ForeignKey(
         Author,
