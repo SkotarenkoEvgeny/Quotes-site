@@ -12,13 +12,14 @@ class Author(models.Model):
     last_name = models.CharField(
         max_length=25,
         blank=False,
-        verbose_name='Last name',
-        unique=True)
+        verbose_name='Last name')
 
-    born_date = models.DateField(
+    born_date = models.CharField(
+        max_length=50,
         verbose_name='Born date')
 
-    dead_date = models.DateField(
+    dead_date = models.CharField(
+        max_length=50,
         verbose_name='Dead date')
 
     profesion = models.CharField(

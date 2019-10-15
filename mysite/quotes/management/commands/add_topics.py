@@ -17,9 +17,7 @@ def crawler(url):
         image_name = i.find('img', first=True).attrs['src'].rsplit(sep='/')[-1]
         topic_name = i.text
 
-
-        topic_obj = Topic(topic=topic_name, foto=image_name)
-
+        topic_obj = Topic(topic=topic_name, foto='/topics/' + image_name)
 
         topic_obj.save()
         print(topic_obj.id)
@@ -33,9 +31,6 @@ def crawler(url):
         print(topic_name, '#####', image_name)
 
         del img_response
-
-
-
 
 
 class Command(BaseCommand):
