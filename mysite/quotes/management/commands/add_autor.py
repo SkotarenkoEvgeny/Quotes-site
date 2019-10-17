@@ -2,8 +2,11 @@ from django.core.management.base import BaseCommand
 from requests_html import HTMLSession
 from threading import Thread
 import requests, os
+from superslug import slugify
 
-from quotes.models import Author
+from quotes.models import Author, Topic, Quote
+
+topics = [i.topic for i in Topic.objects.all()]  # create list of topics
 
 
 def crawler(url):
@@ -12,7 +15,7 @@ def crawler(url):
 
     list_links = response.html.find('.listing', first=True).absolute_links
 
-    for autor_link in list(list_links)[:30]:
+    for autor_link in list(list_links)[:30]: #restriction 30
         print(autor_link)
 
         with HTMLSession() as session2:
@@ -32,6 +35,8 @@ def crawler(url):
             last_name = full_name[1]
         else:
             last_name = ''
+
+        slug = slugify(first_name + ' ' + last_name)
 
         try:
             born_date = autor_resp.html.xpath(
@@ -93,14 +98,36 @@ def crawler(url):
                        'profesion': profesion,
                        'nationality': nationality,
                        'description': description,
+                       'slug': slug,
                        'foto': foto}
 
         try:
-            Author.objects.create(**author_dict)
+            author = Author.objects.create(**author_dict)
             print("suceess")
         except Exception as e:
             print(type(e), e)
-            return
+            continue
+
+        # create the quotes from this author
+
+        topics_for_quotes = autor_resp.html.xpath(
+            '//*[@id="grid"]/div/ul/li/div/div/div')
+        for criterion in topics_for_quotes:
+            rav_topic = criterion.text.split()
+            slug_quote = slugify(' '.join(rav_topic[2:8]))
+            if rav_topic[0] in topics:
+                quote = ' '.join(rav_topic[2:])
+                topic = Topic.objects.get(topic=rav_topic[0])
+                quote_dict = {'quote': quote,
+                              'slug': slug_quote,
+                              'author': author,
+                              'topic': topic}
+                try:
+                    Quote.objects.create(**quote_dict)
+                    print("suceess quote")
+                except Exception as e:
+                    print(type(e), e)
+                    return
 
 
 class Command(BaseCommand):

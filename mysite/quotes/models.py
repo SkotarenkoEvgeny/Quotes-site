@@ -14,6 +14,8 @@ class Author(models.Model):
         blank=False,
         verbose_name='Last name')
 
+    slug = models.CharField(max_length=255, unique=True)
+
     born_date = models.CharField(
         max_length=50,
         verbose_name='Born date')
@@ -51,6 +53,10 @@ class Topic(models.Model):
         verbose_name='Topic',
         unique=True)
 
+    slug = models.CharField(
+        max_length=255,
+        unique=True)
+
     foto = models.ImageField(
         verbose_name='Foto',
         upload_to='topics'
@@ -65,6 +71,10 @@ class Quote(models.Model):
         max_length=500,
         blank=False,
         verbose_name='Quote',
+        unique=True)
+
+    slug = models.CharField(
+        max_length=255,
         unique=True)
 
     author = models.ForeignKey(

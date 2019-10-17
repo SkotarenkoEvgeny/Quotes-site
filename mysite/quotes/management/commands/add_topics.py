@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from requests_html import HTMLSession
 from threading import Thread
 import requests, os
+from superslug import slugify
 
 from quotes.models import Topic
 
@@ -12,12 +13,14 @@ def crawler(url):
 
     list = response.html.find('#grid', first=True).find('li')
 
-    for i in list[:10]:  # change for mass scraping
+    for i in list[:60]:  #restriction 60
+
         image_url = i.find('img', first=True).attrs['src']
         image_name = i.find('img', first=True).attrs['src'].rsplit(sep='/')[-1]
         topic_name = i.text
 
-        topic_obj = Topic(topic=topic_name, foto='/topics/' + image_name)
+        topic_obj = Topic(topic=topic_name, foto='/topics/' + image_name,
+                          slug=slugify(topic_name))
 
         topic_obj.save()
         print(topic_obj.id)
