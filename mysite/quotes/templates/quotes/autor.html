@@ -9,64 +9,59 @@
     <div class="container">
 
         <div class="row topspace">
-            <h2 class="section-title">Marcus Aureliuswas</h2>
+            <h2 class="section-title">{{ author.first_name }}
+                {% if author.last_name %}
+                {{ author.last_name }}
+                {% endif %}
+            </h2>
             <!-- Sidebar -->
             <aside class="col-md-4 sidebar sidebar-left">
 
                 <div class="row widget">
                     <div class="col-xs-12">
                         <h4>LIFE</h4>
-                        <p>The data of born and dead</p>
+                        <p>{{ author.born_date }} - {{ author.dead_date }}</p>
                     </div>
                 </div>
                 <div class="row widget">
                     <div class="col-xs-12">
-                        <p><img src="assets/images/s1.jpg"
-                                alt="need load image"></p>
+                        <p><img src="{% if author.foto %}
+                                            {{ author.foto.url }}
+                                     {% else %} {% static 'quotes/images/No_picture_available.png'%}
+                                     {% endif %}"
+                                alt="{{ author.first_name }} {{ author.last_name }}">
+                        </p>
                     </div>
                 </div>
                 <div class="row widget">
                     <div class="col-xs-12">
                         <h4>PROFESION</h4>
-                        <p>politican</p>
+                        <p>{{ author.profesion }}</p>
                     </div>
                 </div>
                 <div class="row widget">
                     <div class="col-xs-12">
                         <h4>NATIONALITY</h4>
-                        <p>Italian</p>
+                        <p>{{ author.nationality }}</p>
                     </div>
                 </div>
-
-
             </aside>            <!-- /Sidebar -->
 
             <!-- Article main content -->
             <article class="col-sm-8 maincontent">
-                <p>Marcus Aureliuswas Roman Emperor from 161 to 180. He ruled
-                    with Lucius Verus as co-emperor from 161 until Verus' death
-                    in 169. Marcus Aurelius was the last of the so-called Five
-                    Good Emperors. He was a practitioner of Stoicism, and his
-                    untitled writing, commonly known as the Meditations of
-                    Marcus Aurelius, is the most significant source of our
-                    modern understanding of ancient Stoic philosophy
+                <p>{{ author.description }}
                 </p>
                 <h2 class="section-title"><span>Quotes</span></h2>
 
-                <p><a href="">Happines</a></p>
-                <blockquote>Very little is needed to make a happy life; it is
-                    all within yourself, in your way of thinking.
-                </blockquote>
+                {% for quote in two_quotes %}
 
-                <p><a href="">Inspiration</a></p>
-                <blockquote>You have power over your mind - not outside events.
-                    Realize this, and you will find strength.
-                </blockquote>
+                <p><a href="">{{ quote.topic }}</a></p>
+                <blockquote>{{ quote.quote }}</blockquote>
+
+                {% endfor %}
 
             </article>
             <!-- /Article -->
-
-
         </div>
     </div>    <!-- /container -->
 
