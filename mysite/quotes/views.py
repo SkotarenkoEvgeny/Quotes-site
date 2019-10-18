@@ -3,13 +3,14 @@ from django.views import generic
 
 from .models import Author, Quote
 
-import random
-
 
 # Create your views here.
 
 
 class AutorView(generic.DetailView):
+    """
+    the view about curent autor
+    """
     model = Author
     template_name = 'quotes/autor.html'
 
@@ -17,19 +18,31 @@ class AutorView(generic.DetailView):
         # Call the base implementation first to get a context
         context = super(AutorView, self).get_context_data(**kwargs)
         # Add in a QuerySet of all the quotes
-        raw_context = Quote.objects.all()
-        context['two_quotes'] = {random.choice(raw_context),
-                                 random.choice(raw_context)}
-        # print(random.choice(Quote.objects.all()))
-        print(type(context))
+        context['two_quotes'] = Quote.objects.order_by('?')[:2]
         return context
 
 
-# http://127.0.0.1:8000/quotes/autor/maya-angelou
+class MainPageView(generic.ListView):
+    """
+    the main page view
+    """
+    template_name = 'quotes/index.html'
+    context_object_name = 'quotes_list'
+    queryset = Quote.objects.order_by('?')[:4]
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(MainPageView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the quotes
+        context['autors_list'] = Author.objects.order_by('?')[:4]
+        return context
 
 
-def index(request):
-    return render(request, 'quotes/index.html')
+class TopicListView(generic.ListView):
+    """
+    the list of topics
+    """
+    template_name = 'quotes/topic.html'
 
 
 def about(request):
@@ -38,10 +51,6 @@ def about(request):
 
 def blog(request):
     return render(request, 'quotes/topic.html')
-
-
-def autor(request):
-    return render(request, 'quotes/autor.html')
 
 
 def simple_topic(request):
