@@ -7,31 +7,20 @@
 <main id="main">
     <div class="container">
 
-	<div class="row section featured topspace">
-			<div class="row">
-				<div class="col-sm-6 col-md-3">
-					<h3 class="text-center">Life quotes</h3>
-					<p>The way to get things done is not to mind who gets the credit for doing them.</p>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<h3 class="text-center">Hope quotes</h3>
-					<p>Hope is the pillar that holds up the world. Hope is the dream of a waking man.</p>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<h3 class="text-center">Success quotes</h3>
-					<p>I've always tried to go a step past wherever people expected me to end up.</p>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-				</div>
-				<div class="col-sm-6 col-md-3">
-					<h3 class="text-center">Inspirational Quotations</h3>
-					<p>One lives in the hope of becoming a memory.</p>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-				</div>
-			</div>
-    </div>
-	</div>	<!-- /container -->
+        <div class="row section featured topspace">
+            <div class="row">
+                {% for unit in topics_list %}
+                <div class="col-sm-6 col-md-3">
+                    <h3 class="text-center"> {{ unit.topic }} </h3>
+                    <img src="{{ unit.foto.url }}" alt="can't load foto">
+                    <h1></h1>
+                    <p class="text-center"><a href="" class="btn btn-action">Read
+                        more</a></p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>    <!-- /container -->
 
 </main>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Author, Quote
+from .models import Author, Quote, Topic
 
 
 # Create your views here.
@@ -43,7 +43,8 @@ class TopicListView(generic.ListView):
     the list of topics
     """
     template_name = 'quotes/topic.html'
-
+    model = Topic
+    context_object_name = 'topics_list'
 
 def about(request):
     return render(request, 'quotes/autors.html')
