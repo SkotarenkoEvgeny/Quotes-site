@@ -5,51 +5,24 @@
 {% block content %}
 
 <main id="main">
-
     <div class="container">
-
         <div class="row topspace">
-
             <!-- Article main content -->
             <article class="col-sm-12 maincontent">
-                <h2 class="section-title"><span>Happines</span></h2>
+                <h2 class="section-title"><span>{{ topic_category.topic }}</span></h2>
+                {% for unit in quote_list %}
                 <div class="col-sm-4 col-md-3">
-                    <p><a href="">Marcus Aureliuswas</a></p>
-                    <blockquote>Very little is needed to make a happy life; it is
-                        all within yourself, in your way of thinking.
+                    <p><a href="{% url 'autor' unit.author.slug %}">
+                        {{ unit.author }} </a></p>
+                    <blockquote>
+                        {{ unit.quote }}
                     </blockquote>
                 </div>
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="">Elisabeth Cuber-Ross </a></p>
-                    <blockquote>The opinion which other people have of you is their problem, not yours.</blockquote>
-                </div>
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="">Marcus Aureliuswas</a></p>
-                    <blockquote>Very little is needed to make a happy life; it is
-                        all within yourself, in your way of thinking.
-                    </blockquote>
-                </div>
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="">Elisabeth Cuber-Ross </a></p>
-                    <blockquote>The opinion which other people have of you is their problem, not yours.</blockquote>
-                </div>
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="">Marcus Aureliuswas</a></p>
-                    <blockquote>Very little is needed to make a happy life; it is
-                        all within yourself, in your way of thinking.
-                    </blockquote>
-                </div>
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="">Elisabeth Cuber-Ross </a></p>
-                    <blockquote>The opinion which other people have of you is their problem, not yours.</blockquote>
-                </div>
+                {% endfor %}
             </article>
             <!-- /Article -->
-
-
         </div>
-    </div>    <!-- /container -->
-
+    </div>
 </main>
 
 {% endblock content %}

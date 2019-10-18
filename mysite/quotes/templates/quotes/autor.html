@@ -30,7 +30,7 @@
                                             {{ author.foto.url }}
                                      {% else %} {% static 'quotes/images/No_picture_available.png'%}
                                      {% endif %}"
-                                alt="{{ author.first_name }} {{ author.last_name }}">
+                                alt="{{ author.first_name }} ">
                         </p>
                     </div>
                 </div>
@@ -56,7 +56,8 @@
 
                 {% for quote in two_quotes %}
 
-                <p><a href="">{{ quote.topic }}</a></p>
+                <p><a href="{% url 'topic_quotes' quote.topic.slug %}">
+                    {{ quote.topic }}</a></p>
                 <blockquote>{{ quote.quote }}</blockquote>
 
                 {% endfor %}

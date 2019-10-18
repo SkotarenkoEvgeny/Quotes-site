@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 
 from .models import Author, Quote, Topic
@@ -15,9 +15,7 @@ class AutorView(generic.DetailView):
     template_name = 'quotes/autor.html'
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(AutorView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the quotes
         context['two_quotes'] = Quote.objects.order_by('?')[:2]
         return context
 
@@ -31,9 +29,7 @@ class MainPageView(generic.ListView):
     queryset = Quote.objects.order_by('?')[:4]
 
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(MainPageView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the quotes
         context['autors_list'] = Author.objects.order_by('?')[:4]
         return context
 
@@ -46,13 +42,29 @@ class TopicListView(generic.ListView):
     model = Topic
     context_object_name = 'topics_list'
 
-def about(request):
-    return render(request, 'quotes/autors.html')
+
+class AutorListView(generic.ListView):
+    """
+    the list of autors
+    """
+    template_name = 'quotes/autors.html'
+    model = Author
+    context_object_name = 'autor_list'
 
 
-def blog(request):
-    return render(request, 'quotes/topic.html')
+class SimpleTopicList(generic.ListView):
+    """
+    the list of quotes from curent topic
+    """
+    template_name = 'quotes/simple_topic.html'
+    model = Quote
+    context_object_name = 'quote_list'
 
+    def get_context_data(self, **kwargs):
+        context = super(SimpleTopicList, self).get_context_data(**kwargs)
+        context['topic_category'] = get_object_or_404(Topic, slug=self.kwargs['slug'])
+        return context
 
-def simple_topic(request):
-    return render(request, 'quotes/simple_topic.html')
+    def get_queryset(self):
+        self.topic = get_object_or_404(Topic, slug=self.kwargs['slug'])
+        return Quote.objects.filter(topic=self.topic)

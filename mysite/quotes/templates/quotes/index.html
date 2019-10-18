@@ -36,7 +36,7 @@
 
             {% for autor in autors_list %}
             <div class="col-sm-6 col-md-3">
-                <a class="thumbnail" href="sidebar-right.html">
+                <a class="thumbnail" href="{% url 'autor' autor.slug %}">
 						<span class="img">
 							<img src="{% if autor.foto %}
                                             {{ autor.foto.url }}
@@ -50,9 +50,9 @@
                 			{% endif %}
 						</span>
                 </a>
-                <p class="text-center"><a href="{% url 'autor' autor.slug %}"
-                                          class="btn btn-action">Read more</a>
-                </p>
+                <!--<p class="text-center"><a href="{% url 'autor' autor.slug %}"-->
+                                          <!--class="btn btn-action">Read more</a>-->
+                <!--</p>-->
                 <h4></h4>
                 <p></p>
             </div>

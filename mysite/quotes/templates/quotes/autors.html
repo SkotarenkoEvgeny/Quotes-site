@@ -13,71 +13,46 @@
             <!-- Sidebar -->
             <!--Pagination -->
             <center class="">
-			<ul class="pagination">
-				<li class="disabled"><a href="">&laquo;</a></li>
-				<li class="active"><a href="">A</a></li>
-				<li><a href="">B</a></li>
-				<li><a href="">C</a></li>
-				<li><a href="">D</a></li>
-				<li><a href="">E</a></li>
-				<li><a href="">&raquo;</a></li>
-			</ul>
-		    <!-- End Pagination -->
+                <ul class="pagination">
+                    <li class="disabled"><a href="">&laquo;</a></li>
+                    <li class="active"><a href="">A</a></li>
+                    <li><a href="">B</a></li>
+                    <li><a href="">C</a></li>
+                    <li><a href="">D</a></li>
+                    <li><a href="">E</a></li>
+                    <li><a href="">&raquo;</a></li>
+                </ul>
+                <!-- End Pagination -->
 
-			<div class="thumbnails recentworks row">
+                <div class="thumbnails recentworks row">
 
-				<div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
+                    {% for autor in autor_list %}
+                    <div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
+                        <a class="thumbnail" href="{% url 'autor' autor.slug %}">
 						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
+							<img src="{% if autor.foto %}
+                                            {{ autor.foto.url }}
+                                     {% else %} {% static 'quotes/images/No_picture_available.png'%}
+                                     {% endif %}"
+                                alt="{{ autor.first_name }} ">
+
 						</span>
-						<span class="title">Aristotle</span>
-					</a>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-					<h4></h4>
-					<p></p>
-				</div>
+                            <span class="title">
+                                {{ autor.first_name }}
+                                {% if autor.last_name %}
+                                {{ autor.last_name }}
+                                {% endif %}
+                            </span>
+                        </a>
+                        <!--<p class="text-center"><a-->
+                                <!--href="{% url 'autor' autor.slug %}"-->
+                                <!--class="btn btn-action">Read more</a></p>-->
+                        <h4></h4>
+                        <p></p>
+                    </div>
+                    {% endfor %}
 
-				<div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-						</span>
-						<span class="title">Abraham Lincoln</span>
-					</a>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-					<h4></h4>
-					<p></p>
-				</div>
-
-				<div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-						</span>
-						<span class="title">Buddha</span>
-					</a>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-					<h4></h4>
-					<p></p>
-				</div>
-
-				<div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
-					<a class="thumbnail" href="sidebar-right.html">
-						<span class="img">
-							<img src="assets/images/s1.jpg" alt="">
-						</span>
-						<span class="title">Winston Churchill</span>
-					</a>
-					<p class="text-center"><a href="" class="btn btn-action">Read more</a></p>
-					<h4></h4>
-					<p></p>
-				</div>
-            <!-- /Article -->
-
-
-        </div>
-    </div>    <!-- /container -->
+                </div>
 
 </main>
 
