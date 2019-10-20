@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from quotes.models import Author, Topic, Quote
+from quotes.models import Author, Topic, Quote, MessagesToAdmin
 
 class AuthorAdmin(admin.ModelAdmin):
 
@@ -11,5 +11,6 @@ class AuthorAdmin(admin.ModelAdmin):
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Topic)
 admin.site.register(Quote)
+admin.site.register(MessagesToAdmin)
 
 

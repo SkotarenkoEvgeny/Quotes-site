@@ -20,10 +20,16 @@
             <h2 class="section-title"><span>Popular tags</span></h2>
             <div class="row">
                 {% for unit_quote in quotes_list %}
-                <div class="col-sm-6 col-md-3">
+                <div class="index col-sm-6 col-md-3">
                     <h3 class="text-center">{{ unit_quote.topic }}</h3>
                     <p>{{ unit_quote.quote }}</p>
-                    <p class="text-center"><a href="{% url 'topic_quotes' unit_quote.topic.slug %}" class="btn btn-action">Read
+                </div>
+                {% endfor %}
+            </div>
+            <div class="row">
+                {% for unit_quote in quotes_list %}
+                <div class="index col-sm-6 col-md-3">
+                    <p class="index text-center"><a href="{% url 'topic_quotes' unit_quote.topic.slug %}" class="btn btn-action">Read
                         more</a></p>
                 </div>
                 {% endfor %}

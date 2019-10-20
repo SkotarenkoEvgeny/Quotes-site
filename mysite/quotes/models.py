@@ -93,3 +93,20 @@ class Quote(models.Model):
 
     def __str__(self):
         return str(self.author) + ' ' + str(self.topic)
+
+
+class MessagesToAdmin(models.Model):
+    from_email = models.EmailField(
+        verbose_name='Your email')
+    subject = models.CharField(
+        verbose_name='Subject',
+        max_length=128)
+    message = models.CharField(
+        verbose_name='Text of message',
+        max_length=10000)
+    pub_date = models.DateTimeField(
+        auto_now=True,
+        verbose_name='Received date')
+
+    def __str__(self):
+        return str(self.subject) + ' ' + str(self.pub_date)

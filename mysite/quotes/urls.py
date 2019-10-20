@@ -9,4 +9,5 @@ urlpatterns = [
     path('topic/<slug:slug>', views.SimpleTopicList.as_view(),
          name='topic_quotes'),
     path('topic/', views.TopicListView.as_view(), name='topic'),
+    path('admin/contact_form', views.AdminContactView.as_view(), name='admin-contact')
 ]

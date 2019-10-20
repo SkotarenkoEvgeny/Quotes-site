@@ -1,8 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from django.core.paginator import Paginator
+from django.http import HttpResponse, HttpResponseRedirect
+from django.urls import reverse
 
-from .models import Author, Quote, Topic
+from .models import Author, Quote, Topic, MessagesToAdmin
+from .forms import AdminContactForm
 
 
 # Create your views here.
@@ -45,7 +48,6 @@ class TopicListView(generic.ListView):
     paginate_by = 8
 
 
-
 class AutorListView(generic.ListView):
     """
     the list of autors
@@ -53,6 +55,14 @@ class AutorListView(generic.ListView):
     template_name = 'quotes/autors.html'
     model = Author
     context_object_name = 'autor_list'
+
+    def get_queryset(self):
+        order = self.request.GET.get('order_by', None)
+        print(self.queryset)
+        context = Author.objects.all()
+        if order:
+            context = context.order_by(order)
+        return context
 
 
 class SimpleTopicList(generic.ListView):
@@ -65,9 +75,30 @@ class SimpleTopicList(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super(SimpleTopicList, self).get_context_data(**kwargs)
-        context['topic_category'] = get_object_or_404(Topic, slug=self.kwargs['slug'])
+        context['topic_category'] = get_object_or_404(Topic,
+                                                      slug=self.kwargs['slug'])
         return context
 
     def get_queryset(self):
         self.topic = get_object_or_404(Topic, slug=self.kwargs['slug'])
         return Quote.objects.filter(topic=self.topic)
+
+
+class AdminContactView(generic.CreateView):
+    template_name = 'quotes/admin_contact_form.html'
+    model = MessagesToAdmin
+    form_class = AdminContactForm
+
+    def get_success_url(self):
+        return '%s?status_message=Form sended!' % reverse(
+            'index')
+
+    def post(self, request, *args, **kwargs):
+        # the Admin-contact form logic
+        if 'cancel' in request.POST:
+            return HttpResponseRedirect(
+                u'%s?status_message=Form chanceled!' % reverse('index'))
+        elif 'reset' in request.POST:
+            return HttpResponseRedirect(reverse('admin-contact'))
+        else:
+            return super(AdminContactView, self).post(request, *args, **kwargs)
