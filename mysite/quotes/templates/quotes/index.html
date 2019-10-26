@@ -14,35 +14,51 @@
                     also gets tired so refresh it by wise sayings. ~Hazrat
                     Ali </p>
             </div>
-        </div> <!-- / section -->
+        </div>
+        <!-- / section -->
+
+        <!--  serch -->
+        <form class="form-inline" role="form">
+            <!--<meta itemprop="target" content="https://www.quotetab.com/search?authors=true&amp;quotes=true&amp;topics=true&amp;q={q}">-->
+            <!--<input name="authors" type="hidden" value="true">-->
+            <!--<input name="quotes" type="hidden" value="true">-->
+            <!--<input name="topics" type="hidden" value="true">-->
+            <div  class="form-group  col-lg-8">
+                <input class="form-control" type="search" itemprop="query-input" id="q" name="q" value="" placeholder="Search quotes or favorite authors..." required="" pattern=".{1,}">
+
+        <button type="submit" class="btn btn-default">Search</button>
+                </div>
+        </form>
+        <!-- / search -->
+
+
 
         <div class="row section featured topspace">
-            <h2 class="section-title"><span>Popular tags</span></h2>
-            <div class="row">
-                {% for unit_quote in quotes_list %}
-                <div class="index col-sm-6 col-md-3">
-                    <h3 class="text-center">{{ unit_quote.topic }}</h3>
-                    <p>{{ unit_quote.quote }}</p>
-                </div>
-                {% endfor %}
-            </div>
-            <div class="row">
-                {% for unit_quote in quotes_list %}
-                <div class="index col-sm-6 col-md-3">
-                    <p class="index text-center"><a href="{% url 'topic_quotes' unit_quote.topic.slug %}" class="btn btn-action">Read
-                        more</a></p>
-                </div>
-                {% endfor %}
-            </div>
-        </div> <!-- / section -->
-
-        <div class="row section featured topspace">
-
             <h2 class="section-title"><span>Popular autors</span></h2>
-
             {% for autor in autors_list %}
-            <div class="col-sm-6 col-md-3">
-                <a class="thumbnail" href="{% url 'autor' autor.slug %}">
+            <div class="col-sm-6 col-lg-1">
+                <a class="index-topic" href="{% url 'autor' autor.slug %}">
+						<span class="img">
+							<img src="{% if autor.foto %}
+                                            {{ autor.foto.url }}
+                                     {% else %} {% static 'quotes/images/No_picture_available.png'%}
+                                     {% endif %}" alt="">
+						</span>
+                    <span class="title">
+							{{ autor.first_name }}
+                			{% if autor.last_name %}
+                			{{ autor.last_name }}
+                			{% endif %}
+						</span>
+
+                </a>
+            </div>
+            {% endfor %}
+
+            <h2 class="section-title"><span>Quotes from people born in this month</span></h2>
+            {% for autor in autors_list %}
+            <div class="col-sm-6 col-lg-1">
+                <a class="index-topic" href="{% url 'autor' autor.slug %}">
 						<span class="img">
 							<img src="{% if autor.foto %}
                                             {{ autor.foto.url }}
@@ -56,13 +72,26 @@
                 			{% endif %}
 						</span>
                 </a>
-                <!--<p class="text-center"><a href="{% url 'autor' autor.slug %}"-->
-                                          <!--class="btn btn-action">Read more</a>-->
-                <!--</p>-->
-                <h4></h4>
-                <p></p>
             </div>
             {% endfor %}
+
+            <div class="row section featured topspace">
+                <h2 class="section-title">
+                    <span>Popular tags & topics</span></h2>
+                {% for unit in topics_list %}
+                <div class="col-sm-6 col-lg-1">
+
+                    <div class="index-topic">
+                         <a href="{% url 'topic_quotes' unit.slug %}">
+                        <img src="{{ unit.foto.url }}" alt="can't load foto">
+                    </a>
+                    </div>
+                    <h5 class="title"> {{ unit.topic }} </h5>
+
+                </div>
+                {% endfor %}
+            </div> <!-- / section -->
+
         </div>
     </div>
 </main>

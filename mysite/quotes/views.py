@@ -7,7 +7,7 @@ from django.urls import reverse
 from .models import Author, Quote, Topic, MessagesToAdmin
 from .forms import AdminContactForm
 
-
+import datetime
 # Create your views here.
 
 
@@ -20,7 +20,7 @@ class AutorView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AutorView, self).get_context_data(**kwargs)
-        context['two_quotes'] = Quote.objects.order_by('?')[:2]
+        context['two_quotes'] = Quote.objects.order_by('?')[:24]
         return context
 
 
@@ -29,13 +29,18 @@ class MainPageView(generic.ListView):
     the main page view
     """
     template_name = 'quotes/index.html'
-    context_object_name = 'quotes_list'
-    queryset = Quote.objects.order_by('?')[:4]
+    context_object_name = 'topics_list'
+
+    queryset = Topic.objects.order_by('?')[:24]
 
     def get_context_data(self, **kwargs):
         context = super(MainPageView, self).get_context_data(**kwargs)
-        context['autors_list'] = Author.objects.order_by('?')[:4]
+        context['autors_list'] = Author.objects.order_by('?')[:24]
+        date = datetime.date.today()
+        context['born_autors_list']  = Author.objects.order_by('?')[:24]
         return context
+
+
 
 
 class TopicListView(generic.ListView):

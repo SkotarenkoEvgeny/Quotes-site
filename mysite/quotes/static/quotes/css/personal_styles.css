@@ -1,3 +1,13 @@
+form {
+    position: left;
+}
+
+.form-control {
+    display: block;
+    width: inherit;
+
+}
+
 .topspace {
  text-align: center;
 }
@@ -16,6 +26,34 @@
 
 .topspace {
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+.form-group index {
+    display:inline-block;
+    position: left;
+}
+.btn-action index {
+    text-align: center;
+    border: 0 0 0 0;
+}
 
+.index-topic {
+    display: inline-block;
+
+
+}
+.btn {
+    border: 2px;
+    border-radius: 5px;
+    border-color: gray;
+    background-color: #428bca;
+}
+/*
+.form-inline .form-control {
+    width: 1200px
+}
+*/
+.form-group {
+    margin: auto;
+}

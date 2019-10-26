@@ -415,13 +415,13 @@ img {
   display: block;
   width: 100%;
   overflow: hidden;
-  height: 180px;
-  margin: 0 0 20px;
+  height: 70px;
+  margin: 0 0 0px;
   position: relative;
 }
 .thumbnail .title {
   text-transform: uppercase;
-  margin: 0 2em;
+  /*margin: 0 2em;*/
   display: block;
   text-indent: 0;
 }
@@ -801,8 +801,8 @@ footer.entry-meta .meta-in {
 }
 /* Max page width
 /////////////////////////////////////////////////////////////////////*/
-@media (min-width: 900px) {
+@media (min-width: 1800px) {
   .container {
-    max-width: 880px;
+    max-width: 1760px;
   }
 }
