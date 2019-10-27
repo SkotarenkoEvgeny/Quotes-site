@@ -13,7 +13,7 @@ def crawler(url):
 
     list = response.html.find('#grid', first=True).find('li')
 
-    for i in list[:60]:  #restriction 60
+    for i in list:  #restriction 60
 
         image_url = i.find('img', first=True).attrs['src']
         image_name = i.find('img', first=True).attrs['src'].rsplit(sep='/')[-1]

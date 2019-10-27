@@ -16,12 +16,12 @@ class Author(models.Model):
 
     slug = models.CharField(max_length=255, unique=True)
 
-    born_date = models.CharField(
-        max_length=50,
+    born_date = models.DateField(
+        blank=True, null=True,
         verbose_name='Born date')
 
-    dead_date = models.CharField(
-        max_length=50,
+    dead_date = models.DateField(
+        blank=True, null=True,
         verbose_name='Dead date')
 
     profesion = models.CharField(

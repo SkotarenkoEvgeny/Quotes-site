@@ -8,6 +8,8 @@ from .models import Author, Quote, Topic, MessagesToAdmin
 from .forms import AdminContactForm
 
 import datetime
+
+
 # Create your views here.
 
 
@@ -36,11 +38,12 @@ class MainPageView(generic.ListView):
     def get_context_data(self, **kwargs):
         context = super(MainPageView, self).get_context_data(**kwargs)
         context['autors_list'] = Author.objects.order_by('?')[:24]
-        date = datetime.date.today()
-        context['born_autors_list']  = Author.objects.order_by('?')[:24]
+
+        # add the method searching a today born authors
+        today = str(datetime.date.today().month)
+        context['born_autors_list'] = Author.objects.filter(
+            born_date__month=today)
         return context
-
-
 
 
 class TopicListView(generic.ListView):
