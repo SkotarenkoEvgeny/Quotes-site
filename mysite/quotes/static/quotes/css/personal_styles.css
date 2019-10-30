@@ -57,3 +57,26 @@ form {
 .form-group {
     margin: auto;
 }
+
+.img_simple_topic {
+    max-width: 25%;
+}
+
+.local_quote {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+[class*=" local_quote col-"] {
+  margin-bottom: 30px;
+}
+
+.local_quote_content {
+  height: 100%;
+  padding: 20px 20px 10px;
+}
+
+p .local_quote_content{
+    float: right;
+    margin: 0 0 5px 5px;
+}

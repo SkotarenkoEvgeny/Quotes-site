@@ -9,19 +9,21 @@
     <center class="">
         <div class="container">
             <div class="row section featured topspace">
-                <div class="row">
+
                     {% for unit in topics_list %}
-                    <div class="col-sm-6 col-md-3">
-                        <h3 class="text-center"> {{ unit.topic }} </h3>
-                        <img src="{{ unit.foto.url }}" alt="can't load foto">
-                        <h1></h1>
-                        <p class="text-center"><a
-                                href="{% url 'topic_quotes' unit.slug %}"
-                                class="btn btn-action">Read
-                            more</a></p>
+                    <div class="col-sm-6 col-lg-1">
+
+                    <div class="index-topic">
+                        <a href="{% url 'topic_quotes' unit.slug %}">
+                            <img src="{{ unit.foto.url }}"
+                                 alt="can't load foto">
+                        </a>
                     </div>
+                    <h5 class="title"> {{ unit.topic }} </h5>
+                    </div>
+
                     {% endfor %}
-                </div>
+
             </div>
 
             <!-- pagination -->

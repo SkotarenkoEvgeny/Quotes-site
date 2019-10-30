@@ -9,16 +9,37 @@
         <div class="row topspace">
             <!-- Article main content -->
             <article class="col-sm-12 maincontent">
-                <h2 class="section-title"><span>{{ topic_category.topic }}</span></h2>
-                {% for unit in quote_list %}
-                <div class="col-sm-4 col-md-3">
-                    <p><a href="{% url 'autor' unit.author.slug %}">
-                        {{ unit.author }} </a></p>
-                    <blockquote>
-                        {{ unit.quote }}
-                    </blockquote>
+                <span class="img">
+							<img class="img_simple_topic"
+                                 src="{{ topic_category.foto.url }}"
+                                 alt="">
+                </span>
+                <h2 class="section-title col-sm-8 col-md-12">
+                    <span>{{ topic_category.topic }}</span></h2>
+                <div class="col-sm-8 col-md-12 local_quote">
+                    {% for unit in quote_list %}
+                    <div class="col-sm-4 col-md-3 local_quote">
+                        <div class="line">
+                    <span class="img">
+							<img class="img_simple_topic" src="{% if unit.author.foto %}
+                                            {{ unit.author.foto.url }}
+                                     {% else %} {% static 'quotes/images/No_picture_available.png'%}
+                                     {% endif %}"
+                                 alt="">
+                    </span>
+                            <p>
+                                <a class="local_quote_content"
+                                   href="{% url 'autor' unit.author.slug %}">
+                                    {{ unit.author }} </a>
+                            </p>
+                        </div>
+                        <blockquote class="local_quote content">
+                            {{ unit.quote }}
+                        </blockquote>
+                    </div>
+
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </article>
             <!-- /Article -->
         </div>

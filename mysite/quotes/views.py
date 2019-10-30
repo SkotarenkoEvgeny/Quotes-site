@@ -22,7 +22,9 @@ class AutorView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(AutorView, self).get_context_data(**kwargs)
-        context['two_quotes'] = Quote.objects.order_by('?')[:24]
+        author = self.request.GET.get('author')
+        author_id = self.get_object()
+        context['two_quotes'] = Quote.objects.filter(author=author_id)
         return context
 
 
@@ -39,7 +41,7 @@ class MainPageView(generic.ListView):
         context = super(MainPageView, self).get_context_data(**kwargs)
         context['autors_list'] = Author.objects.order_by('?')[:24]
 
-        # add the method searching a today born authors
+        # add the method searching a authors who born in today month
         today = str(datetime.date.today().month)
         context['born_autors_list'] = Author.objects.filter(
             born_date__month=today)
@@ -53,7 +55,7 @@ class TopicListView(generic.ListView):
     template_name = 'quotes/topic.html'
     model = Topic
     context_object_name = 'topics_list'
-    paginate_by = 8
+    paginate_by = 48
 
 
 class AutorListView(generic.ListView):
@@ -85,6 +87,7 @@ class SimpleTopicList(generic.ListView):
         context = super(SimpleTopicList, self).get_context_data(**kwargs)
         context['topic_category'] = get_object_or_404(Topic,
                                                       slug=self.kwargs['slug'])
+
         return context
 
     def get_queryset(self):
@@ -110,3 +113,20 @@ class AdminContactView(generic.CreateView):
             return HttpResponseRedirect(reverse('admin-contact'))
         else:
             return super(AdminContactView, self).post(request, *args, **kwargs)
+
+
+class SearchIndexView(generic.ListView):
+    template_name = 'quotes/index_search.html'
+    model = Quote
+
+    def get_context_data(self, **kwargs):
+        query = self.request.GET.get('search', None)
+        context = super(SearchIndexView, self).get_context_data(**kwargs)
+        context['autors_list'] = Author.objects.filter(
+            last_name=query.capitalize())
+        print(context['autors_list'])
+        topic_id = Topic.objects.get(topic=query.capitalize()).id
+        context['topics_list'] = Quote.objects.filter(topic=topic_id)
+        print(context['topics_list'])
+
+        return context

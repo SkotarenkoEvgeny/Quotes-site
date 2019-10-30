@@ -81,15 +81,13 @@ class Quote(models.Model):
         Author,
         default=None,
         on_delete=models.CASCADE,
-        verbose_name='Autor'
-    )
+        verbose_name='Autor'    )
 
     topic = models.ForeignKey(
         Topic,
         default=None,
         on_delete=models.CASCADE,
-        verbose_name='Topic'
-    )
+        verbose_name='Topic')
 
     def __str__(self):
         return str(self.author) + ' ' + str(self.topic)

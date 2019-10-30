@@ -11,7 +11,7 @@
         <div class="row topspace">
             <div class="row section featured topspace">
                 <p class="text-center-autors">
-                    <a href="{% url 'autors' %}?order_by=first_name" class="btn btn-action">
+                    <a href="{% url 'autors' %}?order_by=last_name" class="btn btn-action">
                     Order by Name</a>
                 </p>
                 <p class="text-center-autors">
@@ -37,14 +37,14 @@
                 <div class="thumbnails recentworks row">
 
                     {% for autor in autor_list %}
-                    <div class="col-xs-9 col-sm-6 col-md-4 col-lg-4">
+                    <div class="col-xs-9 col-sm-6 col-md-4 col-lg-1">
                         <a class="thumbnail-autors" href="{% url 'autor' autor.slug %}">
 						<span class="img">
 							<img src="{% if autor.foto %}
                                             {{ autor.foto.url }}
                                      {% else %} {% static 'quotes/images/No_picture_available.png'%}
                                      {% endif %}"
-                                alt="{{ autor.first_name }} ">
+                                alt="{{ autor.last_name }} ">
 
 						</span>
                             <span class="title">
