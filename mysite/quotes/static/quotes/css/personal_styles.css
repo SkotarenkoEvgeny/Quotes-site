@@ -60,6 +60,7 @@ form {
 
 .img_simple_topic {
     max-width: 25%;
+    float: right;
 }
 
 .local_quote {
