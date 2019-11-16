@@ -50,14 +50,18 @@
 
             <!-- Article main content -->
             <article class="col-sm-8 maincontent">
-                <p>{{ author.description }}
-                </p>
+                <p>{{ author.description }}</p>
                 <h2 class="section-title"><span>Quotes</span></h2>
 
                 {% for quote in two_quotes %}
-
+                 <div class="line  local_quote autor">
+                 <span class="img">
+							<img class="img_simple_topic" src=" {{ quote.topic.foto.url }}"
+                                 alt="">
+                    </span>
                 <p><a href="{% url 'topic_quotes' quote.topic.slug %}">
                     {{ quote.topic }}</a></p>
+                 </div>
                 <blockquote>{{ quote.quote }}</blockquote>
 
                 {% endfor %}

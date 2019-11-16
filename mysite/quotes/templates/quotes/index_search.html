@@ -36,34 +36,34 @@
             <div class="row section featured topspace">
                 <h2 class="section-title">
                     <span>Discovered tags & topics</span></h2>
-                <!--{% for quote in topics_list %}-->
-                <!--<p><a href="{% url 'topic_quotes' quote.topic.slug %}">-->
-                    <!--{{ quote.topic }}</a></p>-->
-                <!--<blockquote>{{ quote.quote }}</blockquote>-->
+                {% if topics_list %}
+                    {% for quote in topics_list %}
+                    <p><a href="{% url 'topic_quotes' quote.topic.slug %}">
+                        {{ quote.topic.url }}</a></p>
+                    <blockquote>{{ quote }}</blockquote>
 
-                <!--<div class="col-sm-6 col-lg-1">-->
-                    <!--<a class="index-topic" href="{% url 'autor' quote.autor.slug %}">-->
-						<!--<span class="img">-->
-							<!--<img src="{% if quote.autor.foto %}-->
-                                            <!--{{ quote.autor.foto.url }}-->
-                                     <!--{% else %} {% static 'quotes/images/No_picture_available.png'%}-->
-                                     <!--{% endif %}" alt="">-->
-						<!--</span>-->
-                        <!--<span class="title">-->
-							<!--{{ quote.autor.first_name }}-->
-                			<!--{% if quote.autor.last_name %}-->
-                			<!--{{ quote.autor.last_name }}-->
-                			<!--{% endif %}-->
-						<!--</span>-->
+                    <!--<div class="col-sm-6 col-lg-1">-->
+                        <!--<a class="index-topic" href="{% url 'autor' quote.autor.url %}">-->
+                            <!--<span class="img">-->
+                                <!--<img src="{% if quote.autor.foto %}-->
+                                                <!--{{ quote.autor.foto.url }}-->
+                                         <!--{% else %} {% static 'quotes/images/No_picture_available.png'%}-->
+                                         <!--{% endif %}" alt="">-->
+                            <!--</span>-->
 
-                    <!--</a>-->
-                <!--</div>-->
+                            <!--<span class="title">-->
+                                <!--{{ quote.autor.first_name }}-->
+                                <!--{% if quote.autor.last_name %}-->
+                                    <!--{{ quote.autor.last_name }}-->
+                                <!--{% endif %}-->
+                            <!--</span>-->
 
-                <!--</div>-->
-                <!--{% endfor %}-->
+                        <!--</a>-->
+                    <!--</div>-->
 
-            </div> <!-- / section -->
-
+                    {% endfor %}
+                {% endif %}
+            </div>
         </div>
     </div>
 

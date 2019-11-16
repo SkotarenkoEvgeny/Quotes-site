@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.core.exceptions import ObjectDoesNotExist
 from django.views import generic
 from django.core.paginator import Paginator
 from django.http import HttpResponse, HttpResponseRedirect
@@ -122,11 +123,19 @@ class SearchIndexView(generic.ListView):
     def get_context_data(self, **kwargs):
         query = self.request.GET.get('search', None)
         context = super(SearchIndexView, self).get_context_data(**kwargs)
-        context['autors_list'] = Author.objects.filter(
+
+        try:
+            context['autors_list'] = Author.objects.filter(
             last_name=query.capitalize())
-        print(context['autors_list'])
-        topic_id = Topic.objects.get(topic=query.capitalize()).id
-        context['topics_list'] = Quote.objects.filter(topic=topic_id)
-        print(context['topics_list'])
+            print('autors_list', context['autors_list'])
+        except ObjectDoesNotExist:
+            pass
+
+        try:
+            topic_id = Topic.objects.get(topic=query.capitalize()).id
+            context['topics_list'] = Quote.objects.filter(topic=topic_id)
+            print('topics_list', context['topics_list'])
+        except ObjectDoesNotExist:
+            pass
 
         return context

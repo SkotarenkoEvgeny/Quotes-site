@@ -37,8 +37,8 @@
         <div class="row section featured topspace">
             <h2 class="section-title"><span>Popular authors</span></h2>
             {% for autor in autors_list %}
-            <div class="col-sm-6 col-lg-1">
-                <a class="index-topic" href="{% url 'autor' autor.slug %}">
+            <div class="col-xs-9 col-sm-6 col-md-4 col-lg-1">
+                <a class="thumbnail-autors" href="{% url 'autor' autor.slug %}">
 						<span class="img">
 							<img src="{% if autor.foto %}
                                             {{ autor.foto.url }}
@@ -59,8 +59,8 @@
             <h2 class="section-title"><span>Authors who born in this month</span>
             </h2>
             {% for autor in born_autors_list %}
-            <div class="col-sm-6 col-lg-1">
-                <a class="index-topic" href="{% url 'autor' autor.slug %}">
+            <div class="col-xs-9 col-sm-6 col-md-4 col-lg-1">
+                <a class="thumbnail-autors" href="{% url 'autor' autor.slug %}">
 						<span class="img">
 							<img src="{% if autor.foto %}
                                             {{ autor.foto.url }}
@@ -80,8 +80,10 @@
             <div class="row section featured topspace">
                 <h2 class="section-title">
                     <span>Popular tags & topics</span></h2>
-                {% for unit in topics_list %}
-                <div class="col-sm-6 col-lg-1">
+                <div class="row section featured topspace">
+
+                    {% for unit in topics_list %}
+                    <div class="col-sm-6 col-lg-1 simple-topic">
 
                     <div class="index-topic">
                         <a href="{% url 'topic_quotes' unit.slug %}">
@@ -90,9 +92,11 @@
                         </a>
                     </div>
                     <h5 class="title"> {{ unit.topic }} </h5>
+                    </div>
+
+                    {% endfor %}
 
                 </div>
-                {% endfor %}
             </div> <!-- / section -->
 
         </div>

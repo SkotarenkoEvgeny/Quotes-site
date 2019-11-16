@@ -19,7 +19,7 @@ form {
 
 .thumbnail-autors {
     display: block;
-    height: 250px;
+    height: 150px;
     margin: 0 0 60px;
     position: relative;
 }
@@ -80,4 +80,12 @@ form {
 p .local_quote_content{
     float: right;
     margin: 0 0 5px 5px;
+}
+
+.simple-topic{
+    height: 200px;
+}
+.local_quote autor{
+    display:center;
+    padding: 10px;
 }
