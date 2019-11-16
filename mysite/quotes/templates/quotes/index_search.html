@@ -39,7 +39,7 @@
                 {% if topics_list %}
                     {% for quote in topics_list %}
                     <p><a href="{% url 'topic_quotes' quote.topic.slug %}">
-                        {{ quote.topic.url }}</a></p>
+                        {{ quote.topic }}</a></p>
                     <blockquote>{{ quote }}</blockquote>
 
                     <!--<div class="col-sm-6 col-lg-1">-->
